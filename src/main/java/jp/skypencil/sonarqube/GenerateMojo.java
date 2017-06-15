@@ -23,6 +23,9 @@ public class GenerateMojo extends AbstractMojo {
     @Parameter(required = true, defaultValue = "false")
     private boolean skip;
 
+    @Parameter(defaultValue = "")
+    private String tags;
+
     @Override
     public void execute() throws MojoExecutionException {
         if (skip) {
@@ -42,7 +45,7 @@ public class GenerateMojo extends AbstractMojo {
 
         try {
             getLog().info("Generating rule XML for SonarQube at " + output.getAbsolutePath());
-            new RuleXmlGenerator().generate(findbugs, messages, output);
+            new RuleXmlGenerator().generate(findbugs, messages, output, tags.split(","));
         } catch (IOException e) {
             throw new MojoExecutionException("I/O problem occurred", e);
         }

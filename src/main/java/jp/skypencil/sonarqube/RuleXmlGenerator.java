@@ -19,7 +19,7 @@ import com.google.common.io.Files;
  * <p>Generate rule.xml for Sonar (SonarQube).</p>
  */
 public class RuleXmlGenerator {
-    void generate(File findbugsFile, File messageFile, File output) throws IOException {
+    void generate(File findbugsFile, File messageFile, File output, String[] tags) throws IOException {
         SAXReader reader = new SAXReader();
         try {
             Document message = reader.read(messageFile);
@@ -30,19 +30,19 @@ public class RuleXmlGenerator {
             @SuppressWarnings("unchecked")
             List<Node> findbugsAbstract = findbugs.selectNodes("/FindbugsPlugin/BugPattern");
 
-            writePatterns(findbugsAbstract, bugPatterns, output);
+            writePatterns(findbugsAbstract, bugPatterns, output, tags);
         } catch (DocumentException e) {
             throw new IllegalArgumentException(e);
         }
     }
 
-    private void writePatterns(List<Node> findbugsAbstract, List<Node> bugPatterns, File output) throws IOException {
+    private void writePatterns(List<Node> findbugsAbstract, List<Node> bugPatterns, File output, String[] tags) throws IOException {
         BufferedWriter writer = Files.newWriter(output, Charsets.UTF_8);
         boolean threw = true;
         try {
             writer.write("<rules>\n");
             for (Node bugPattern : bugPatterns) {
-                writeBugPattern(bugPattern, findbugsAbstract, writer);
+                writeBugPattern(bugPattern, findbugsAbstract, writer, tags);
             }
             writer.write("</rules>\n");
             threw = false;
@@ -51,7 +51,7 @@ public class RuleXmlGenerator {
         }
     }
 
-    private void writeBugPattern(Node bugPattern, List<Node> findbugsAbstract, BufferedWriter writer) throws IOException {
+    private void writeBugPattern(Node bugPattern, List<Node> findbugsAbstract, BufferedWriter writer, String[] tags) throws IOException {
         String type = bugPattern.valueOf("@type");
         String description = bugPattern.selectSingleNode("ShortDescription").getText();
 
@@ -65,10 +65,13 @@ public class RuleXmlGenerator {
                 "    <name><![CDATA[%s - %s]]></name>\n" +
                 "    <description><![CDATA[[%s] %s]]></description>\n" +
                 "    <configKey><![CDATA[%s]]></configKey>\n" +
-                "    <tag>%s</tag>\n" +
-                "  </rule>\n",
+                "    <tag>%s</tag>\n",
                 type, priority, category, description, abbrev, description, type, category.toLowerCase().replace("_","-"));
         writer.write(line);
+        for (String tag : tags) {
+            writer.write(String.format("    <tag>%s</tag>\n", tag));
+        }
+        writer.write("  </rule>\n");
     }
 
     private String decidePriority(String category) {
