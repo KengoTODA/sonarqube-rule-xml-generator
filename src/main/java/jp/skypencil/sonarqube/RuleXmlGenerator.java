@@ -71,6 +71,9 @@ public class RuleXmlGenerator {
         for (String tag : tags) {
             writer.write(String.format("    <tag>%s</tag>\n", tag));
         }
+        if (category.equals("PERFORMANCE") || category.equals("CORRECTNESS") || category.equals("MULTI-THREADING")) {
+            writer.write("    <tag>bug</tag>\n");
+        }
         writer.write("  </rule>\n");
     }
 
