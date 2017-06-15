@@ -16,7 +16,7 @@ In SonarQube plugin submodule, execute `generate` goal at `generate-resources` p
         <configuration>
           <findbugs>../spotbugs-plugin/src/main/resources/findbugs.xml</findbugs>
           <messages>../spotbugs-plugin/src/main/resources/messages.xml</messages>
-          <output>${project.build.outputDirectory}/rules.xml</output>
+          <output>${project.build.outputDirectory}/rule.xml</output>
         </configuration>
         <executions>
           <execution>
@@ -31,10 +31,10 @@ In SonarQube plugin submodule, execute `generate` goal at `generate-resources` p
 
 ## Logic to decide severity
 
-* If bug pattern's category is STYLE, MALICIOUS_CODE, I18N or EXPERIMENTAL, its severity is INFO
-* Otherwise its severity is MAJOR
+* If bug pattern's category is STYLE, MALICIOUS_CODE, I18N or EXPERIMENTAL, its severity is **INFO**
+* Otherwise its severity is **MAJOR**
 
 ## Logic to decide tag
 
-* If bug pattern's category is  PERFORMANCE, CORRECTNESS or MULTI-THREADING, it's tagged with `bug`
+* If bug pattern's category is  PERFORMANCE, CORRECTNESS or MULTI-THREADING, it's tagged with **bug**
 * You can specify comma-separated list of custom tag by `<tags>` parameter, e.g. `<tags>foo,bar</tags>`
