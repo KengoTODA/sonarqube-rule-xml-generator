@@ -1,0 +1,16 @@
+sudo: false
+dist: trusty
+language: java
+jdk:
+  - oraclejdk8
+script:
+  - "mvn org.jacoco:jacoco-maven-plugin:prepare-agent verify sonar:sonar"
+notifications:
+  email:
+    recipients:
+      - skypencil+travis@gmail.com
+addons:
+  sonarcloud:
+    organization: "kengotoda-github"
+    token:
+      secure: "hLtKC9m3byMpEfvl5fjzJCKEFknM2urYm7ooCrBQWQcFsB06OrEBnmxjt/S59av34d+r6XjcwFWMu98f6klUZbzsQriO8qOPe0oKLOk5Ib/uSBkjFqOUH1TgefmbIKUXd6vgcceSUGvjaaYwugyDwzdemvpyKXw7acsmXdi0FUfvwv5+DAYlKLcauze4zRskb6io3rJk6a1zithk+9/P4/N5HdEZygCJKGyAc3RssuU/Bexy2/pJCdFAPlnjayUHcOIJ0D206LurdwGaHrmIoodqdgyU4wp8xXsu9BGQzjcGbKCdkji97XbZXltMvEF0V2ka5oIMPEP+rG3jwfNv++PfcDxoQYQE8VvsEvWwfuQZ0AqI8a5TToRHlJ63AEEQMGL8SpV0rdLT7yMm73jhIyyBrzvJNyTXAXYmcEs1FWTvSUy63rQyJF/7oW1Ml+wNpHws/a8m0x4ePM5rjejmNUQd7LQpTxnNsC91sf+HRc38SdHimYTPsSRvjic8+OPt7j9sq5K3DWw41hu47ETRjxxN70AQRv0hyN6tI8SmjPSu9ZFTL3ZsJLCQFlY5Se9uElZbKKExl+MiABDaIEKjuxJPekhMyNFolU1EQpCOxfxeKE6EKbYsyXAplTrd4DSqzW3NkwqQZtFDJ5xFWp1OpjpuM/tpPNgvmK8EBs3UiKY="

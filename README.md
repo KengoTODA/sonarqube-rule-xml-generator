@@ -1,5 +1,8 @@
 # SonarQube rule.xml generator
 
+[![Build Status](https://travis-ci.org/KengoTODA/sonarqube-rule-xml-generator.svg?branch=master)](https://travis-ci.org/KengoTODA/sonarqube-rule-xml-generator)
+[![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=jp.skypencil.sonarqube%3Arule-xml-maven-plugin&metric=alert_status)](https://sonarcloud.io/dashboard?id=jp.skypencil.sonarqube%3Arule-xml-maven-plugin)
+
 This is a Maven plugin to generate `rule.xml` which is necessary to [create SonarQube plugin](https://docs.sonarqube.org/display/DEV/Build+Plugin).
 
 ## How to use
