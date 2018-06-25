@@ -39,7 +39,8 @@ public class GenerateMojo extends AbstractMojo {
         if (!messages.isFile()) {
             throw new MojoExecutionException("messages.xml not found at " + messages.getAbsolutePath());
         }
-        if (!output.getParentFile().mkdirs()) {
+        File parent = output.getParentFile();
+        if (!parent.isDirectory() && !parent.mkdirs()) {
             throw new MojoExecutionException("failed to make directory at " + output.getParent());
         }
 
