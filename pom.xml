@@ -2,8 +2,9 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>jp.skypencil.sonarqube</groupId>
 	<artifactId>rule-xml-maven-plugin</artifactId>
-	<version>0.1.2-SNAPSHOT</version>
+	<version>0.1.2</version>
 	<url>https://github.com/KengoTODA/sonarqube-rule-xml-generator</url>
+	<name>SonarQube rule.xml generator</name>
 	<description>A maven plugin to generate sonarqube rule XML from findbugs.xml</description>
 	<packaging>maven-plugin</packaging>
 	<properties>

@@ -15,7 +15,7 @@ In SonarQube plugin submodule, execute `generate` goal at `generate-resources` p
       <plugin>
         <groupId>jp.skypencil.sonarqube</groupId>
         <artifactId>rule-xml-maven-plugin</artifactId>
-        <version>0.1.1</version>
+        <version>0.1.2</version>
         <configuration>
           <findbugs>../spotbugs-plugin/src/main/resources/findbugs.xml</findbugs>
           <messages>../spotbugs-plugin/src/main/resources/messages.xml</messages>
