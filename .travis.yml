@@ -4,7 +4,7 @@ language: java
 jdk:
   - oraclejdk8
 script:
-  - "mvn org.jacoco:jacoco-maven-plugin:prepare-agent verify sonar:sonar"
+  - "./mvnw org.jacoco:jacoco-maven-plugin:prepare-agent verify sonar:sonar -B"
 notifications:
   email:
     recipients:
