@@ -1,8 +1,7 @@
-sudo: false
-dist: trusty
+dist: xenial
 language: java
 jdk:
-  - oraclejdk8
+  - openjdk8
 script:
   - "./mvnw org.jacoco:jacoco-maven-plugin:prepare-agent verify sonar:sonar -B"
 notifications:
